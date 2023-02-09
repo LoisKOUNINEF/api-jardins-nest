@@ -36,10 +36,13 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        sameSite: true,
+        sameSite: 'none',
         secure: true,
         httpOnly: false,
         maxAge: 30 * 24 * 60 * 60 * 1000,
+        // domain: null,
+        // OR
+        // domain: 'lesjardinsdelalandette.fr',
       },
     }),
   );
@@ -59,6 +62,6 @@ async function bootstrap() {
 
   SwaggerModule.setup('/', app, document);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
